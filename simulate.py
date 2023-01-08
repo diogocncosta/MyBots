@@ -5,6 +5,7 @@ import time as t
 
 physicsClient = p.connect(p.GUI)
 
+
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 #adds gravity to our world, in this case, box.sdf
