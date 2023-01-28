@@ -1,6 +1,6 @@
 import numpy as numpy
 
-duration = 100
+duration = 1000
 #Motor Command Vector
 #Backleg Variables
 Bamplitude = numpy.pi/4
