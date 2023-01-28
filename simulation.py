@@ -16,10 +16,11 @@ class SIMULATION:
     
     def run(self):
         for i in range(c.duration):
-            print(i)
+            #print(i)
             
             p.stepSimulation()
             self.robot.Sense(i)
+            self.robot.Think()
             self.robot.Act(i)
             t.sleep(1/60)
             """

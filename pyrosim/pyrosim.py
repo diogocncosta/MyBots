@@ -14,6 +14,8 @@ from pyrosim.urdf  import URDF
 
 from pyrosim.joint import JOINT
 
+
+
 SDF_FILETYPE  = 0
 
 URDF_FILETYPE = 1
@@ -43,6 +45,10 @@ def End_Model():
     model.Save_End_Tag(f)
 
 def Get_Touch_Sensor_Value_For_Link(linkName):
+
+    print(linkNamesToIndices, linkName)
+
+    # exit()
 
     touchValue = -1.0
 
@@ -96,7 +102,7 @@ def Prepare_Joint_Dictionary(bodyID):
 
         jointInfo = p.getJointInfo( bodyID , jointIndex )
 
-        jointName = jointInfo[1]
+        jointName = jointInfo[1].decode("UTF-8")
 
         jointNamesToIndices[jointName] = jointIndex
 
