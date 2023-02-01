@@ -32,6 +32,6 @@ class HILLCLIMBER:
         
     def Evolve(self):
         self.parent.Evaluate("GUI")
-        self.parent.Evaluate("DIRECT")
+        #self.parent.Evaluate("DIRECT")
         for currentGeneration in range(c.numberOfGenerations):
             self.Evolve_For_One_Generation()
