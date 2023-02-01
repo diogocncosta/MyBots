@@ -1,6 +1,7 @@
 import numpy as numpy
 
 duration = 1000
+numberOfGenerations = 20
 #Motor Command Vector
 #Backleg Variables
 Bamplitude = numpy.pi/4

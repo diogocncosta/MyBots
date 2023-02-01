@@ -46,7 +46,7 @@ def End_Model():
 
 def Get_Touch_Sensor_Value_For_Link(linkName):
 
-    print(linkNamesToIndices, linkName)
+    #print(linkNamesToIndices, linkName)
 
     # exit()
 

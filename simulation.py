@@ -6,52 +6,38 @@ from world import WORLD
 from robot import ROBOT
 import constants as c
 
+
 class SIMULATION:
-    def __init__(self):
+    def __init__(self, directOrGUI):
+        self.directOrGUI = directOrGUI
+        if directOrGUI == "DIRECT":
+            self.physicsClient = p.connect(p.DIRECT)
+        else:
+            self.physicsClient = p.connect(p.GUI)
+
+        #physicsClient = p.connect(p.DIRECT)
+        p.setAdditionalSearchPath(pybullet_data.getDataPath())
+        p.setGravity(0,0,-9.8)    
         self.world = WORLD()
         self.robot = ROBOT()
-    
+        
     def __del__(self):
         p.disconnect()
     
     def run(self):
         for i in range(c.duration):
-            #print(i)
             
             p.stepSimulation()
             self.robot.Sense(i)
             self.robot.Think()
             self.robot.Act(i)
-            t.sleep(1/60)
-            """
-            #Sensors
-            #c.backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-            #c.frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+            if self.directOrGUI == "GUI":
+                t.sleep(1/1000)
 
-            #Motors
-            #backleg
-            pyrosim.Set_Motor_For_Joint(
-            bodyIndex = robotId,
-            jointName = b"Torso_BackLeg",
-            controlMode = p.POSITION_CONTROL,
-             = c.BtargetAngles[i],
-            maxForce = 50)
-    
-            #frontleg
-            pyrosim.Set_Motor_For_Joint(
-            bodyIndex = robotId,
-            jointName = b"Torso_FrontLeg",
-            controlMode = p.POSITION_CONTROL,
-            targetPosition = c.FtargetAngles[i],
-            maxForce = 50)
-
-            t.sleep(1/60)
-            print(i)
-            """
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
 
         
-physicsClient = p.connect(p.GUI)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.setGravity(0,0,-9.8)
+
 
         
