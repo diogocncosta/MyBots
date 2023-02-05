@@ -1,8 +1,12 @@
 import numpy as numpy
 
 duration = 1000
-numberOfGenerations = 10
-populationSize = 10
+numberOfGenerations = 1
+populationSize = 1
+motorJointRange = 1
+
+numSensorNeurons = 9
+numMotorNeurons = 8
 #Motor Command Vector
 #Backleg Variables
 Bamplitude = numpy.pi/4
