@@ -61,12 +61,21 @@ class ROBOT:
         basePosition = basePositionAndOrientation[0]
 
         xPosition = basePosition[0]
+        yPosition = basePosition[1]
         
-        f = open("tmp" + str(self.solutionID) + ".txt", "w")
+        #save x position
+        f = open("tmpx" + str(self.solutionID) + ".txt", "w")
         f.write(str(xPosition))
         #f.write(str(xCoordinateOfLinkZero))
         f.close()
-        os.rename("tmp" + str(self.solutionID) + ".txt", "fitness"  + str(self.solutionID) + ".txt")
+
+        #save y position
+        f = open("tmpy" + str(self.solutionID) + ".txt", "w")
+        f.write(str(yPosition))
+        #f.write(str(xCoordinateOfLinkZero))
+        f.close()
+        os.rename("tmpx" + str(self.solutionID) + ".txt", "fitnessx"  + str(self.solutionID) + ".txt")
+        os.rename("tmpy" + str(self.solutionID) + ".txt", "fitnessy"  + str(self.solutionID) + ".txt")
         #print(stateOfLinkZero)
         #print(positionOfLinkZero)
         exit()

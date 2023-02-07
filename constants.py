@@ -1,8 +1,8 @@
 import numpy as numpy
 
-duration = 1000
-numberOfGenerations = 1
-populationSize = 1
+duration = 500
+numberOfGenerations = 5
+populationSize = 5
 motorJointRange = 1
 
 numSensorNeurons = 9

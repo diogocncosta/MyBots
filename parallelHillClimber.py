@@ -6,7 +6,9 @@ import os
 class PARALLEL_HILLCLIMBER:
     def __init__(self):
         os.system("del" + " " +"brain*.nndf")
-        os.system("del" + " " + "fitness*.txt")
+        os.system("del" + " " + "fitnessx*.txt")
+        os.system("del" + " " + "fitnessxObs*.txt")
+        os.system("del" + " " + "fitnesszObs*.txt")
         self.nextAvailableID = 0
         #self.parent = SOLUTION(self.nextAvailableID)
         self.parents = {}
@@ -25,16 +27,18 @@ class PARALLEL_HILLCLIMBER:
 
     def Show_Best(self):
         all_values = self.parents.items()
-        lowest_fitness = min(all_values, key=lambda x: x[1].fitness)
-        best_parent = lowest_fitness[1]
+        highest_fitness = min(all_values, key=lambda x: x[1].fitnessy)
+        best_parent = highest_fitness[1]
         best_parent.Start_Simulation("GUI")
 
     def Print(self):
         print("\n")
         for i in self.parents:
-            print("parent:", self.parents[i].fitness, "child:", self.children[i].fitness)
-        print("\n")
+            print("parent:", self.parents[i].fitnessx, "child:", self.children[i].fitnessx)
 
+        print("\n")
+         
+        
     def Spawn(self):
         self.children = {}
         for i in self.parents:
@@ -49,8 +53,9 @@ class PARALLEL_HILLCLIMBER:
 
     def Select(self):
         for i in self.parents:
-            if self.parents[i].fitness > self.children[i].fitness:
-                self.parents[i] = self.children[i]
+            if self.parents[i].fitnessy < self.children[i].fitnessy:
+                #if self.parents[i].fitnessy < self.children[i].fitnessy:
+                    self.parents[i] = self.children[i]
         
     def Evolve(self):
         self.Evaluate(self.parents)
