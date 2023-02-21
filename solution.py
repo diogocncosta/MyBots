@@ -109,17 +109,11 @@ class SOLUTION:
         
         for index in range (0,self.firstbranches+1):
             self.cube(index, length)
-        
-        
-        # # for index in range(0, secondbranch):
-        # pyrosim.Send_Joint(name="Cube1"+"_Cube"+str(index+self.firstbranches), parent="Cube0", child ="Cube"+str(index+self.firstbranches),
-        #        type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
-        
-        # # for index in range (0,secondbranch+1):
-        # #     length = random.uniform(c.lowerBound, c.upperBound)
-        # #     width = random.uniform(c.lowerBound, c.upperBound) 
-        # #     height = random.uniform(c.lowerBound, c.upperBound)
-        # pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, length/2], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+           
+        pyrosim.Send_Joint(name="Cube1"+"_Cube"+str(self.firstbranches+1), parent="Cube1", child ="Cube"+str(self.firstbranches+1),
+                    type = "revolute", position = [0, 0.1, 0], jointAxis= "0 0 1")
+        pyrosim.Send_Cube(name="Cube"+str(self.firstbranches+1), pos=[0, 0.1, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+
 
     def create_random_sensors(self):
         num_cubes = self.num
