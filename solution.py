@@ -14,6 +14,9 @@ class SOLUTION:
         self.num = random.randint(0, 10)
         self.nsensors = random.randint(0, self.num)
         self.sensors = random.sample(range(1,self.num), self.nsensors)
+        self.firstbranches = random.randint(1, 5)
+        self.secondbranches = random.randint(0, self.firstbranches)
+        self.thirdbranches = random.randint(0, self.secondbranches)
 
     def Set_ID(self, ID):
         self.myID = ID
@@ -67,32 +70,56 @@ class SOLUTION:
 
 
     def create_random_cubes(self):
-        length = random.uniform(c.lowerBound, c.upperBound)
+        length = 0.2
+        #length = random.uniform(c.lowerBound, c.upperBound)
         width = random.uniform(c.lowerBound, c.upperBound) 
         height = random.uniform(c.lowerBound, c.upperBound)
         index = 0
+        secondbranch = 1
 
         if index in self.sensors:
-            pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, 0.5], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
+            pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, 0.5], size=[0.2, 0.2, 0.2], color="Green", rgba="0.0 1.0 0.0 1.0")
         else:
-            pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, 0.5], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
-
-        pyrosim.Send_Joint(name="Cube"+str(index)+"_Cube"+str(index+1), parent="Cube"+str(index), child ="Cube"+str(index+1),
-                     type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
-
-        for index in range(1, self.num):
-            
-            length = random.uniform(c.lowerBound, c.upperBound)
-            width = random.uniform(c.lowerBound, c.upperBound) 
-            height = random.uniform(c.lowerBound, c.upperBound)
-            if index in self.sensors:
-                pyrosim.Send_Cube(name="Cube"+str(index), pos=[length/2, 0, 0], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
-            else:
-                pyrosim.Send_Cube(name="Cube"+str(index), pos=[length/2, 0, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
-
-            if index != self.num-1:
-                pyrosim.Send_Joint(name="Cube"+str(index)+"_Cube"+str(index+1), parent="Cube"+str(index), child ="Cube"+str(index+1),
-                    type = "revolute", position = [length, 0, 0], jointAxis= "0 0 1")
+            pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, 0.5], size=[0.2, 0.2, 0.2], color="Cyan", rgba="0 1.0 1.0 1.0")
+        
+        # pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
+        #     type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
+        
+        for index in range(0, self.firstbranches):
+            print(index)
+            if index == 0:
+                pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
+                   type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
+            if index == 1:
+                pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
+                   type = "revolute", position = [-length/2, 0, 0.5], jointAxis= "0 0 1")
+            if index == 2:
+                pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
+                   type = "revolute", position = [0, length/2, 0.5], jointAxis= "0 0 1")
+            if index == 3:
+                pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
+                   type = "revolute", position = [0, -length/2, 0.5], jointAxis= "0 0 1")
+            if index == 4:
+                pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
+                   type = "revolute", position = [0, 0, 0.5+length/2], jointAxis= "0 0 1")
+            if index == 5:
+                pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
+                   type = "revolute", position = [0, 0, 0.5-length/2], jointAxis= "0 0 1")
+        
+        
+        for index in range (0,self.firstbranches+1):
+            self.cube(index, length)
+        
+        
+        # # for index in range(0, secondbranch):
+        # pyrosim.Send_Joint(name="Cube1"+"_Cube"+str(index+self.firstbranches), parent="Cube0", child ="Cube"+str(index+self.firstbranches),
+        #        type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
+        
+        # # for index in range (0,secondbranch+1):
+        # #     length = random.uniform(c.lowerBound, c.upperBound)
+        # #     width = random.uniform(c.lowerBound, c.upperBound) 
+        # #     height = random.uniform(c.lowerBound, c.upperBound)
+        # pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, length/2], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
 
     def create_random_sensors(self):
         num_cubes = self.num
@@ -102,6 +129,54 @@ class SOLUTION:
                 pyrosim.Send_Sensor_Neuron(name = str(i), linkName = "Cube"+str(i))
         print("num_cubes" + str(num_cubes))
         print("which_sensors" + str(num_sensors))
+    
+    def cube(self, index, l):
+        # pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index), parent="Cube0", child ="Cube"+str(index),
+        #     type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
+        
+        length = random.uniform(c.lowerBound, c.upperBound)
+        width = random.uniform(c.lowerBound, c.upperBound) 
+        height = random.uniform(c.lowerBound, c.upperBound)
+        
+        if index == 1:
+            if index in self.sensors:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[l/2, 0, 0], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
+            else:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[l/2, 0, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+            
+        # pyrosim.Send_Joint(name="Cube1"+"_Cube"+str(index+self.firstbranches), parent="Cube1", child ="Cube"+str(index+self.firstbranches-1),
+        #             type = "revolute", position = [0, 0, 0.5+length/2], jointAxis= "0 0 1")
+        # pyrosim.Send_Cube(name="Cube"+str(index+self.firstbranches), pos=[length/2, 0, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+
+        if index == 2:
+            if index in self.sensors:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[-l/2, 0, 0], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
+            else:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[-l/2, 0, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+
+        if index == 3:
+            if index in self.sensors:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, l/2, 0], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
+            else:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, l/2, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+
+        if index == 4:
+            if index in self.sensors:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, -l/2, 0], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
+            else:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, -l/2, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+
+        if index == 5:
+            if index in self.sensors:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, l/2], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
+            else:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, l/2], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
+
+        if index == 6:
+            if index in self.sensors:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, -l/2], size=[length, width, height], color="Green", rgba="0.0 1.0 0.0 1.0")
+            else:
+                pyrosim.Send_Cube(name="Cube"+str(index), pos=[0, 0, -l/2], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
 
 
 
