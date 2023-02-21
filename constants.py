@@ -1,5 +1,7 @@
 import numpy as numpy
 
+lowerBound = 0.1
+upperBound = 0.4
 duration = 1000
 numberOfGenerations = 1
 populationSize = 1
