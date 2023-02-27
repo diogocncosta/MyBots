@@ -44,7 +44,7 @@
         <visual>
             <origin xyz="0.1 0 0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.3913909664123233 0.2 0.22300508805072716" />
+                <box size="0.1434937171844097 0.2 0.12621903591042552" />
             </geometry>
             <material name="Green">
                 <color rgba="0.0 1.0 0.0 1.0"/>
@@ -53,7 +53,7 @@
         <collision>
             <origin xyz="0.1 0 0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.3913909664123233 0.2 0.22300508805072716" />
+                <box size="0.1434937171844097 0.2 0.12621903591042552" />
             </geometry>
         </collision>
     </link>
@@ -66,7 +66,7 @@
         <visual>
             <origin xyz="-0.1 0 0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.1607205173825933 0.30618817736141934 0.3026644169862168" />
+                <box size="0.14977656894585403 0.16836855617027807 0.15368151665097168" />
             </geometry>
             <material name="Cyan">
                 <color rgba="0 1.0 1.0 1.0"/>
@@ -75,7 +75,7 @@
         <collision>
             <origin xyz="-0.1 0 0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.1607205173825933 0.30618817736141934 0.3026644169862168" />
+                <box size="0.14977656894585403 0.16836855617027807 0.15368151665097168" />
             </geometry>
         </collision>
     </link>
@@ -95,7 +95,7 @@
         <visual>
             <origin xyz="0 0.1 0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.2 0.11495657785366319 0.15748847869589472" />
+                <box size="0.2 0.3772245547899873 0.23990837595378098" />
             </geometry>
             <material name="Cyan">
                 <color rgba="0 1.0 1.0 1.0"/>
@@ -104,7 +104,7 @@
         <collision>
             <origin xyz="0 0.1 0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.2 0.11495657785366319 0.15748847869589472" />
+                <box size="0.2 0.3772245547899873 0.23990837595378098" />
             </geometry>
         </collision>
     </link>
