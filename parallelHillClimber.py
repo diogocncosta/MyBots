@@ -5,10 +5,10 @@ import os
 
 class PARALLEL_HILLCLIMBER:
     def __init__(self):
-        os.system("del" + " " +"brain*.nndf")
+        os.system("del" + " " + "brain*.nndf")
         os.system("del" + " " + "fitnessx*.txt")
-        os.system("del" + " " + "fitnessxObs*.txt")
-        os.system("del" + " " + "fitnesszObs*.txt")
+        os.system("del" + " " + "world*.sdf")
+        os.system("del" + " " + "body*.urdf")
         self.nextAvailableID = 0
         #self.parent = SOLUTION(self.nextAvailableID)
         self.parents = {}
@@ -27,7 +27,7 @@ class PARALLEL_HILLCLIMBER:
 
     def Show_Best(self):
         all_values = self.parents.items()
-        highest_fitness = min(all_values, key=lambda x: x[1].fitnessy)
+        highest_fitness = min(all_values, key=lambda x: x[1].fitnessx)
         best_parent = highest_fitness[1]
         best_parent.Start_Simulation("GUI")
 
@@ -59,14 +59,12 @@ class PARALLEL_HILLCLIMBER:
         
     def Evolve(self):
         self.Evaluate(self.parents)
-        
-        # self.parent.Evaluate("GUI")
-        # #self.parent.Evaluate("DIRECT")
         for currentGeneration in range(c.numberOfGenerations):
             self.Evolve_For_One_Generation()
     
     def Evaluate(self, solutions):
         for i in range(c.populationSize):
             solutions[i].Start_Simulation("DIRECT")
+            #change between direct and gui to see all populations or just the final/best
         for i in range(c.populationSize):
             solutions[i].Wait_For_Simulation_To_End()
