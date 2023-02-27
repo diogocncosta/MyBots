@@ -11,12 +11,16 @@ class SOLUTION:
         self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons) * 2 - 1 
         self.weights = self.weights*20-1
         self.myID = nextAvailableID
-        self.num = random.randint(0, 10)
-        self.nsensors = random.randint(0, self.num)
-        self.sensors = random.sample(range(1,self.num), self.nsensors)
+        #self.num = random.randint(1, 10)
+        
         self.firstbranches = random.randint(1, 5)
         self.secondbranches = random.randint(0, self.firstbranches)
-        self.thirdbranches = random.randint(0, self.secondbranches)
+        
+        self.nsensors = random.randint(1, self.firstbranches)
+        print("firstgen=" + str(self.firstbranches))
+        print("nsensors=" + str(self.nsensors))
+        self.sensors = random.sample(range(0,self.firstbranches), self.nsensors)
+        print("nsensors=" + str(self.sensors))
 
     def Set_ID(self, ID):
         self.myID = ID
@@ -115,13 +119,11 @@ class SOLUTION:
         pyrosim.Send_Cube(name="Cube"+str(self.firstbranches+1), pos=[0, 0.1, 0], size=[length, width, height], color="Cyan", rgba="0 1.0 1.0 1.0")
 
     def create_random_sensors(self):
-        num_cubes = self.num
+
         num_sensors = self.sensors
         for i in range (self.nsensors):
             if i in num_sensors:
                 pyrosim.Send_Sensor_Neuron(name = str(i), linkName = "Cube"+str(i))
-        print("num_cubes" + str(num_cubes))
-        print("which_sensors" + str(num_sensors))
     
     def cube(self, index, l):
         # pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index), parent="Cube0", child ="Cube"+str(index),
