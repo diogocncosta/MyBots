@@ -2,7 +2,7 @@ import os
 from parallelHillClimber import PARALLEL_HILLCLIMBER
 import matplotlib.pyplot as plt
 import constants as c
-for x in range (1,5):
+for x in range (1,2):
     print("Random Seed {}".format(x))
     phc = PARALLEL_HILLCLIMBER()
     phc.Evolve()

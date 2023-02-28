@@ -94,7 +94,10 @@ class SOLUTION:
         randRow = random.randint(0,c.numSensorNeurons-1)
         randColumn = random.randint(0,c.numMotorNeurons-1)
         self.weights[randRow,randColumn] = random.random() * 2 - 1 
-
+        if self.firstbranches < 5:
+            self.firstbranches = self.firstbranches+1
+        else:
+            self.firstbranches = self.firstbranches-1
 
     def create_random_cubes(self):
         

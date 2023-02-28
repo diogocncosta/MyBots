@@ -85,7 +85,10 @@ class PARALLEL_HILLCLIMBER:
     def Evaluate(self, solutions):
         
         for i in range(c.populationSize):
-            solutions[i].Start_Simulation("DIRECT")
+            if i == 0: 
+                solutions[i].Start_Simulation("GUI")
+            else:
+                solutions[i].Start_Simulation("DIRECT")
             #change between direct and gui to see all populations or just the final/best
         for i in range(c.populationSize):
             solutions[i].Wait_For_Simulation_To_End()
