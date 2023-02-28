@@ -8,6 +8,14 @@ import constants as c
 
 class SOLUTION:
     def __init__(self, nextAvailableID):
+        self.myID = nextAvailableID
+        # if self.myID > 10:
+        #      numpy.random.seed(10)
+        
+        # if self.myID > 50:
+        #      random.seed(50)
+
+        #numpy.random.seed(42)
         self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons) * 2 - 1 
         self.weights = self.weights*20-1
         self.myID = nextAvailableID
@@ -18,6 +26,8 @@ class SOLUTION:
         
         self.nsensors = random.randint(1, self.firstbranches-1)
         self.sensors = random.sample(range(1,self.firstbranches), self.nsensors)
+        
+        
 
     def Set_ID(self, ID):
         self.myID = ID
@@ -87,6 +97,7 @@ class SOLUTION:
 
 
     def create_random_cubes(self):
+        
         length = 0.2
         #length = random.uniform(c.lowerBound, c.upperBound)
         width = random.uniform(c.lowerBound, c.upperBound) 
@@ -103,7 +114,7 @@ class SOLUTION:
         #     type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
         
         for index in range(0, self.firstbranches):
-            print(index)
+            #print(index)
             if index == 0:
                 pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index+1), parent="Cube0", child ="Cube"+str(index+1),
                    type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
@@ -133,6 +144,7 @@ class SOLUTION:
        
     
     def cube(self, index, l):
+        
         # pyrosim.Send_Joint(name="Cube0"+"_Cube"+str(index), parent="Cube0", child ="Cube"+str(index),
         #     type = "revolute", position = [length/2, 0, 0.5], jointAxis= "0 0 1")
         
