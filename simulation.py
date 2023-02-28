@@ -15,11 +15,12 @@ class SIMULATION:
             self.physicsClient = p.connect(p.DIRECT)
         else:
             self.physicsClient = p.connect(p.GUI)
+            p.configureDebugVisualizer(p.COV_ENABLE_GUI,0)
 
         #physicsClient = p.connect(p.DIRECT)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)    
-        self.world = WORLD()
+        self.world = WORLD(solutionID)
         self.robot = ROBOT(solutionID)
         
     def __del__(self):
@@ -37,6 +38,7 @@ class SIMULATION:
 
     def Get_Fitness(self):
         self.robot.Get_Fitness()
+        
 
         
 

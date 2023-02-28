@@ -1,9 +1,11 @@
 import numpy as numpy
 
-duration = 500
-numberOfGenerations = 5
+lowerBound = 0.1
+upperBound = 0.4
+duration = 300
+numberOfGenerations = 10
 populationSize = 5
-motorJointRange = 1
+motorJointRange = 0.2
 
 numSensorNeurons = 9
 numMotorNeurons = 8
