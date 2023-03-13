@@ -6,6 +6,7 @@ for x in range (1,2):
     print("Random Seed {}".format(x))
     phc = PARALLEL_HILLCLIMBER()
     phc.Evolve()
+    input("Press Enter to Continue")
     phc.Show_Best()
 
     plt.plot([i + 1 for i in range(c.numberOfGenerations)], 

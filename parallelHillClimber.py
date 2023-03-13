@@ -27,7 +27,7 @@ class PARALLEL_HILLCLIMBER:
     def Evolve_For_One_Generation(self, currentGeneration):
         self.Spawn()
         self.Mutate()
-        self.Evaluate(self.children)
+        self.Evaluate_gen(self.children, currentGeneration)
         self.Print(currentGeneration)
         self.Select()
         #print(self.fitnessArray)
@@ -84,13 +84,27 @@ class PARALLEL_HILLCLIMBER:
     
     def Evaluate(self, solutions):
         
-        for i in range(c.populationSize):
-            if i == 0: 
+        for i in solutions:
+            solutions[i].Start_Simulation("DIRECT")
+                # for i in range(c.populationSize):
+        #     if i == 0: 
+        #         solutions[i].Start_Simulation("GUI")
+        #     else:
+        #         solutions[i].Start_Simulation("DIRECT")
+            #change between direct and gui to see all populations or just the final/best
+        # for i in range(c.populationSize):
+        #     solutions[i].Wait_For_Simulation_To_End()
+        for i in solutions:
+            solutions[i].Wait_For_Simulation_To_End()
+
+    def Evaluate_gen(self, solutions, generation):
+        
+        for i in solutions:
+            if generation == 0: 
                 solutions[i].Start_Simulation("GUI")
             else:
                 solutions[i].Start_Simulation("DIRECT")
             #change between direct and gui to see all populations or just the final/best
-        for i in range(c.populationSize):
+        for i in solutions:
             solutions[i].Wait_For_Simulation_To_End()
-
     

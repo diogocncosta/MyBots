@@ -36,7 +36,7 @@ class SOLUTION:
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
-        os.system("python simulate.py " + directOrGUI +  " " + str(self.myID)  + " &")
+        os.system("py simulate.py " + directOrGUI +  " " + str(self.myID)  + " &")
 
         #breakpoint()
     def Wait_For_Simulation_To_End(self):
