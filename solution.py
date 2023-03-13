@@ -36,7 +36,7 @@ class SOLUTION:
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
-        os.system("python simulate.py " + directOrGUI +  " " + str(self.myID)  + " &")
+        os.system("py simulate.py " + directOrGUI +  " " + str(self.myID)  + " &")
 
         #breakpoint()
     def Wait_For_Simulation_To_End(self):
@@ -98,7 +98,6 @@ class SOLUTION:
             self.firstbranches = self.firstbranches+1
         else:
             self.firstbranches = self.firstbranches-1
-
 
     def create_random_cubes(self):
         
