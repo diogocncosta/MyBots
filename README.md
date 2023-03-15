@@ -105,8 +105,12 @@ Now, let’s be honest. Evolutionary coding isn’t necessarily the easiest thin
 <p align="center">
   <img width="400" src="https://user-images.githubusercontent.com/81761580/225106937-e9b52db6-ebae-492b-9b7d-411d6b1cbd50.jpg" alt="graph" />
 </p>
+
+By looking at the graph we can tell that for most seeds, there were long periods of stagnation where the same bot kept on having the highest fitness. For most seeds there is barelly any progression after 200 generations. This could be sugestive of two things:
+ - The body and brain algorithm might not be conductive of enough variation to break through the stagnation of evolution
+ - The mutations created don't provide enough change to demonstrate significant results. While we see a steep growth of fitness <100 generations in, mostly stagnation comes afterward. A way to improve this for the future could be the change of the mutation function after a certain number of generations or a threshold value for the fitness function.
                                                                                                                                          
-But don’t let yourself be discouraged, for there are several resources available to help you along your journey in Artificial Life, like the ones on the top of this post. So go ahead, give it your best shot, learn from those resources or even build upon my code. I look forward see what you come up with! 
+Either way, there are ways to improve and you should not let my results discourage you, for there are several resources available to help you along your journey in Artificial Life, like the ones on the top of this post. So go ahead, give it your best shot, learn from those resources or even build upon my code. I look forward see what you come up with! 
 
 ## How to run the project
 To run this project I recommend downloading the files into a folder and opening it in vscode.
