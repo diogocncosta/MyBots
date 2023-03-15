@@ -62,20 +62,42 @@ My algorithm starts by always creating a block of randomized dimensions that I d
 
 You may have also noticed that some of the links are green while others are blue. This is because our bodies have a brain that works as a closed loop system composed of sensors, synapses, motors and joints. Sensors collect information about the robot (e.g. the x position of the torso in space) that is then passed onto the motors by the synapses, which then send a torque to the links and change their position. The sensors are then fed new information and the loop repeats itself. This to say, the green links are the ones that have motors, while the blue ones are the ones without it (this too is randomly atributed).
 
+<p align="center">
+  <img width="600" src="https://user-images.githubusercontent.com/81761580/225193589-a8d28284-1d07-49d5-8fd0-0e7f1cbb13af.png" alt="GIF" />
+ </p>
+
+
 ### Duplication: 
 Withing the code we stipulate the size of our population, that refers to the number of bots we will be working with at each generation.
 To make a copy of a parent notheless, this happens within the parallelHillClimber.py file. We use the function Spawn() we created to make a deep copy of a parent and set as its child.
+
+<p align="center">
+  <img width="600" src="https://user-images.githubusercontent.com/81761580/225175189-914c5a7f-df3f-4d10-8e71-eba101d50864.png" alt="GIF" />
+ </p>
 
 ### Mutation: 
 To ensure evolution we need to mutate the children of our parent bots. This refers to the function Mutate() in parallelHillClimber.py file. The function does two things:
  -  Randomly assigns the weights of the synapse connections
  -  If a bot has more than 5 links, it takes one away, if it has less it gives it one additional randomized one
 
+<p align="center">
+  <img width="600" src="https://user-images.githubusercontent.com/81761580/225175528-674facc4-d0da-44bc-bd06-317dcdf93b88.png" alt="GIF" />
+ </p>
+
 ### Evaluation: 
 Where it comes to evaluation we used Evaluate() within the parellelHillClimber.py. Here, we run the simulation of both parents and children and used the fitness function to collect the information we need to then select the best bot. In this case we save the x position of the torso, so to measure how far to the left it is. The higher the better.
 
+<p align="center">
+  <img width="600" src="https://user-images.githubusercontent.com/81761580/225176479-1e75eec9-0972-4bf4-a69f-309f1f1feaf4.png" alt="GIF" />
+ </p>
+
 ### Selection and Output: 
 Selection happens within the function Select(), also within the parallelHillClimber.py file. This function compares each parent to its child using the outcome of their respective fitness functions. So the one with a higher fitness value (hence being able to walk furthest to the left) is kept and fed into the next generation of the code.
+
+<p align="center">
+  <img width="600" src="https://user-images.githubusercontent.com/81761580/225177965-8215ff85-946f-48c0-b292-36dab49ba518.png" alt="GIF" />
+ </p>
+
 
 ## Keeping it Real
 Now, let’s be honest. Evolutionary coding isn’t necessarily the easiest thing. Even after 50,000 iterations, creatures created with the goal of walking furthest to the left barely moved from their original position, as you can see in the graph below:
