@@ -30,7 +30,7 @@ We are talking about evolutionary programming and it can be simplified into five
 </p>
 
 
-**Initialisation**: Comes when we choose a starting point for the evolution, which can be randomized or specified.
+**Initialization**: Comes when we choose a starting point for the evolution, which can be randomized or specified.
 
 **Duplication**: Producing multiple copies of the current solution to create a population.
 
@@ -52,31 +52,36 @@ You might be wondering "How can I actually implement these steps into something 
 </p>
 
 
-### Initialisation: 
+### Initialization: 
 When it came to generating a starting point, my goal was to create a randomized creature (which I will be refering to as a 'bot') made of randomized blocks. 
-My algorithm starts by always creating a block of randomized dimensions that I designate as the torso of my bot. Afterwards I randomly assigning it a number of members (from 0 to 7). Each of these links is given random dimensions and a joint that connects it to one of the faces of the torso or another link, already attatched to the torso. 
+My algorithm starts by always creating a block of randomized dimensions that I designate as the torso of my bot. Afterwards I randomly assigning it a number of members (from 0 to 7). Each of these links is given random dimensions and a joint that connects it to one of the faces of the torso or another link, already attatched to the torso. Like the diagram below.
+
+<p align="center">
+  <img width="600" src="https://user-images.githubusercontent.com/81761580/225172557-8acdded5-3669-4015-8abb-eea91b525d53.png" alt="GIF" />
+ </p>
 
 You may have also noticed that some of the links are green while others are blue. This is because our bodies have a brain that works as a closed loop system composed of sensors, synapses, motors and joints. Sensors collect information about the robot (e.g. the x position of the torso in space) that is then passed onto the motors by the synapses, which then send a torque to the links and change their position. The sensors are then fed new information and the loop repeats itself. This to say, the green links are the ones that have motors, while the blue ones are the ones without it (this too is randomly atributed).
 
 ### Duplication: 
-Withing the code we stipulate the size of our population, that refers to the number of bots we will be working with at each generation
+Withing the code we stipulate the size of our population, that refers to the number of bots we will be working with at each generation.
+To make a copy of a parent notheless, this happens within the parallelHillClimber.py file. We use the function Spawn() we created to make a deep copy of a parent and set as its child.
 
 ### Mutation: 
-To ensure evolution we need to mutate the children of our parent bots. In this project, the mutation function does two things:
+To ensure evolution we need to mutate the children of our parent bots. This refers to the function Mutate() in parallelHillClimber.py file. The function does two things:
  -  Randomly assigns the weights of the synapse connections
  -  If a bot has more than 5 links, it takes one away, if it has less it gives it one additional randomized one
 
 ### Evaluation: 
-Where it comes to evaluation we created what we call a fitness function. In this fitness function we collect the x position of the torso of our bot as to measure how far to the left it is. The higher the better.
+Where it comes to evaluation we used Evaluate() within the parellelHillClimber.py. Here, we run the simulation of both parents and children and used the fitness function to collect the information we need to then select the best bot. In this case we save the x position of the torso, so to measure how far to the left it is. The higher the better.
 
 ### Selection and Output: 
-Selection happens by comparing each parent to its child using the fitness function. So the one with a higher fitness value (hence being able to walk furthest to the left) is kept and fed into the next generation of the code.
+Selection happens within the function Select(), also within the parallelHillClimber.py file. This function compares each parent to its child using the outcome of their respective fitness functions. So the one with a higher fitness value (hence being able to walk furthest to the left) is kept and fed into the next generation of the code.
 
 ## Keeping it Real
 Now, let’s be honest. Evolutionary coding isn’t necessarily the easiest thing. Even after 50,000 iterations, creatures created with the goal of walking furthest to the left barely moved from their original position, as you can see in the graph below:
 
 <p align="center">
-  <img width="400" src="https://user-images.githubusercontent.com/81761580/225106937-e9b52db6-ebae-492b-9b7d-411d6b1cbd50.jpg alt="graph" />
+  <img width="400" src="https://user-images.githubusercontent.com/81761580/225106937-e9b52db6-ebae-492b-9b7d-411d6b1cbd50.jpg" alt="graph" />
 </p>
                                                                                                                                          
 But don’t let yourself be discouraged, for there are several resources available to help you along your journey in Artificial Life, like the ones on the top of this post. So go ahead, give it your best shot, learn from those resources or even build upon my code. I look forward see what you come up with! 
