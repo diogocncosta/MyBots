@@ -116,7 +116,7 @@ Either way, there are ways to improve and you should not let my results discoura
 To run this project I recommend downloading the files into a folder and opening it in vscode.
 Once there, run the file "search.py" and you should see some magic happening!
                                     
-Right now the code is set to have 1 seed, 1 member in the population and run for 1 generation. If you'd like to change this please follow the steps:
+Right now the code is set to have 1 seed, 1 member in the population and run for 2 generations. If you'd like to change this please follow the steps:
  - On line 5 of search.py change the range to the number of seeds you'd like to see
  - On constants.py change populationSize to the number you wish to have
  - On constants.py change numberOfGenerations to the number you wish to have
